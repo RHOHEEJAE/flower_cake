@@ -1,0 +1,29 @@
+# 의존성
+node_modules/
+server/node_modules/
+
+# 환경변수 (시크릿 키 포함 — 절대 커밋하지 않음)
+.env
+
+# DB 파일
+server/wagashi.db
+server/wagashi.db-wal
+server/wagashi.db-shm
+
+# 업로드 파일
+public/uploads/
+
+# 빌드 결과물
+dist/
+
+# 로그
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
