@@ -1,32 +1,31 @@
 {
   "name": "wagashi-shop",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "수제 화과자 쇼핑몰",
+  "private": true,
   "scripts": {
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "vite",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "build": "vite build",
-    "preview": "vite preview",
-    "seed": "cd server && npm run seed",
-    "install:all": "npm install && cd server && npm install"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.22.3",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.10",
+    "clsx": "^2.1.1",
+    "next": "^15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "recharts": "^2.12.2",
-    "zustand": "^4.5.2"
+    "tailwind-merge": "^3.5.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "autoprefixer": "^10.4.19",
-    "concurrently": "^8.2.2",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
-    "vite": "^5.2.8"
+    "typescript": "^5"
   }
 }
