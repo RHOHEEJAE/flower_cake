@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next"
 import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google"
 import "./globals.css"
 
+export const dynamic = "force-dynamic"
+
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
   variable: "--font-noto-sans-kr",
