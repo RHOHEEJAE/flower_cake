@@ -1,22 +1,18 @@
-# 의존성
+# dependencies
 node_modules/
-server/node_modules/
 
-# 환경변수 (시크릿 키 포함 — 절대 커밋하지 않음)
+# next.js
+.next/
+out/
+
+# env
 .env
+.env*.local
 
-# DB 파일
-server/wagashi.db
-server/wagashi.db-wal
-server/wagashi.db-shm
-
-# 업로드 파일
-public/uploads/
-
-# 빌드 결과물
+# build
 dist/
 
-# 로그
+# logs
 *.log
 npm-debug.log*
 
@@ -27,3 +23,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# vercel
+.vercel
