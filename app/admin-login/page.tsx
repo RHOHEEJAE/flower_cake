@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <h1 className="font-serif text-3xl text-brand-cream tracking-widest mb-1">
-            花菓子
+            BE:UM
           </h1>
           <p className="font-sans text-xs text-brand-cream/30 tracking-widest uppercase">
             Admin

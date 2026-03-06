@@ -27,7 +27,7 @@ export default function AdminSidebar() {
     <aside className="w-56 min-h-screen bg-brand-dark flex flex-col shrink-0">
       <div className="p-6 border-b border-brand-cream/10">
         <h1 className="font-serif text-lg text-brand-cream tracking-widest">
-          {"花菓子"}
+          {"BE:UM"}
         </h1>
         <p className="font-sans text-xs text-brand-cream/40 mt-1">
           {"관리자 대시보드"}

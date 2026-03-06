@@ -18,12 +18,12 @@ const notoSerifKr = Noto_Serif_KR({
 })
 
 export const metadata: Metadata = {
-  title: "花菓子 | 수제 화과자",
+  title: "BE:UM | 수제 화과자",
   description: "전통의 맛과 현대적 감각이 만나는 수제 화과자 브랜드",
 }
 
 export const viewport: Viewport = {
-  themeColor: "#FDFAF5",
+  themeColor: "#FAF9F6",
   width: "device-width",
   initialScale: 1,
 }

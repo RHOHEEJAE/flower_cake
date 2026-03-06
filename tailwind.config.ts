@@ -11,10 +11,12 @@ const config: Config = {
       colors: {
         brand: {
           dark: "#2C1A0E",
-          cream: "#F5ECD7",
-          terra: "#C8744D",
-          bg: "#FDFAF5",
-          light: "#EDE0C8",
+          cream: "#E8E3DA",
+          terra: "#C6A97E",
+          bg: "#FAF9F6",
+          light: "#E8E3DA",
+          muted: "#BFBEB8",
+          sage: "#A7B7A5",
         },
         background: "var(--background)",
         foreground: "var(--foreground)",

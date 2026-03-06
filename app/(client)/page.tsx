@@ -28,9 +28,9 @@ export default async function HomePage() {
       <section className="relative h-[90vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://picsum.photos/seed/wagashi-hero/1920/1080"
+            src="/flower_main.png"
             alt="히어로 배경"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/50 via-brand-dark/30 to-brand-dark/60" />
         </div>
@@ -39,7 +39,7 @@ export default async function HomePage() {
             Handcrafted Wagashi
           </p>
           <h1 className="font-serif text-5xl md:text-7xl text-white tracking-widest mb-6 leading-tight text-balance">
-            {"花菓子"}
+            {"BE:UM"}
           </h1>
           <p className="font-serif text-brand-cream/90 text-lg md:text-2xl tracking-wide mb-10 italic">
             {"정성으로 빚은 화과자, 마음을 담은 선물"}

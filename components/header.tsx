@@ -51,7 +51,7 @@ export default function Header() {
             href="/"
             className="font-serif text-2xl font-semibold text-brand-dark tracking-widest"
           >
-            {"花菓子"}
+            {"BE:UM"}
           </Link>
 
           {/* Desktop nav */}
