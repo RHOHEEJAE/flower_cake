@@ -1,4 +1,5 @@
 -- Auto-create profile on user signup
+-- nickname: sign-up 폼의 name 또는 nickname 메타데이터 사용
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -10,7 +11,11 @@ BEGIN
   VALUES (
     new.id,
     new.email,
-    COALESCE(new.raw_user_meta_data ->> 'nickname', split_part(new.email, '@', 1)),
+    COALESCE(
+      new.raw_user_meta_data ->> 'name',
+      new.raw_user_meta_data ->> 'nickname',
+      split_part(new.email, '@', 1)
+    ),
     COALESCE(new.raw_user_meta_data ->> 'role', 'customer')
   )
   ON CONFLICT (id) DO NOTHING;

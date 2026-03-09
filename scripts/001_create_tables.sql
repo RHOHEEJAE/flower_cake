@@ -30,6 +30,11 @@ DROP POLICY IF EXISTS "profiles_select_own" ON public.profiles;
 CREATE POLICY "profiles_select_own" ON public.profiles FOR SELECT USING (auth.uid() = id);
 DROP POLICY IF EXISTS "profiles_insert_own" ON public.profiles;
 CREATE POLICY "profiles_insert_own" ON public.profiles FOR INSERT WITH CHECK (auth.uid() = id);
+-- 트리거(회원가입 시 프로필 자동 생성)가 profiles에 INSERT 할 수 있도록 허용 (auth.users에 있는 id만 허용)
+DROP POLICY IF EXISTS "profiles_insert_auth_new_user" ON public.profiles;
+CREATE POLICY "profiles_insert_auth_new_user" ON public.profiles
+  FOR INSERT
+  WITH CHECK (EXISTS (SELECT 1 FROM auth.users u WHERE u.id = id));
 DROP POLICY IF EXISTS "profiles_update_own" ON public.profiles;
 CREATE POLICY "profiles_update_own" ON public.profiles FOR UPDATE USING (auth.uid() = id);
 
