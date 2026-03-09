@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(cmd /c \"npm install\")",
+      "Bash(cmd /c \"npm install 2>&1\")",
+      "Bash(cmd /c \"cd C:\\\\Users\\\\Owner\\\\wagashi-shop && npm install\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\Owner\\\\wagashi-shop''; npm install; Write-Host ''DONE''; npm list --depth=0 2>&1 | head -20\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem ''C:\\\\Program Files \\(x86\\)\\\\nodejs'' -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem ''C:\\\\Users\\\\Owner\\\\AppData\\\\Roaming\\\\nvm'' -ErrorAction SilentlyContinue | Select-Object Name\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\'' -Directory | Select-Object Name\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' 2>&1; Get-ChildItem ''C:\\\\Users\\\\Owner\\\\AppData\\\\Local\\\\Programs'' 2>&1 | Select-Object Name | head -20\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\Owner\\\\AppData\\\\Roaming\\\\npm'' 2>&1 | head -5; Get-ChildItem ''C:\\\\Users\\\\Owner\\\\AppData\\\\Local\\\\fnm'' 2>&1 | head -5; Get-ChildItem ''C:\\\\Users\\\\Owner\\\\.nvm'' 2>&1 | head -5; Get-ChildItem ''C:\\\\Users\\\\Owner\\\\AppData\\\\Local\\\\nvm'' 2>&1 | head -5\")",
+      "Bash(where node)"
+    ]
+  }
+}
