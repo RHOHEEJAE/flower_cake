@@ -2,6 +2,7 @@
 
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
+import { productPrimaryImage } from "@/lib/utils"
 
 interface CartItem {
   productId: string
@@ -13,7 +14,16 @@ interface CartItem {
 
 interface CartState {
   items: CartItem[]
-  addItem: (product: { id: string; name: string; price: number; image_url?: string }, qty?: number) => void
+  addItem: (
+    product: {
+      id: string
+      name: string
+      price: number
+      image_url?: string
+      images?: unknown
+    },
+    qty?: number
+  ) => void
   removeItem: (productId: string) => void
   updateQty: (productId: string, qty: number) => void
   clearCart: () => void
@@ -43,7 +53,7 @@ const useCartStore = create<CartState>()(
                 productId: product.id,
                 name: product.name,
                 price: product.price,
-                image: product.image_url || "",
+                image: productPrimaryImage(product) || "",
                 qty,
               },
             ],

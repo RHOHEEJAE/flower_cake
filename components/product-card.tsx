@@ -3,13 +3,14 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import useCartStore from "@/lib/store/use-cart-store"
-import { formatPrice } from "@/lib/utils"
+import { formatPrice, productPrimaryImage } from "@/lib/utils"
 
 interface Product {
   id: string
   name: string
   price: number
   image_url?: string
+  images?: string[]
   stock: number
 }
 
@@ -48,7 +49,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="aspect-square overflow-hidden bg-brand-cream/30">
         <img
           src={
-            product.image_url ||
+            productPrimaryImage(product) ||
             `https://picsum.photos/seed/${product.id}/400/400`
           }
           alt={product.name}

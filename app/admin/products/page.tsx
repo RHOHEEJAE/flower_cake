@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { createClient } from "@/lib/supabase/client"
+import { uploadProductImageFile } from "@/lib/supabase/product-images"
 import { formatPrice } from "@/lib/utils"
 
 const CATEGORIES = [
@@ -35,6 +36,7 @@ export default function AdminProductList() {
   const [modal, setModal] = useState<"add" | "edit" | null>(null)
   const [form, setForm] = useState<any>(EMPTY_FORM)
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const [error, setError] = useState("")
 
   const load = async () => {
@@ -85,6 +87,21 @@ export default function AdminProductList() {
       ...prev,
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }))
+  }
+
+  const handleImageFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    e.target.value = ""
+    if (!file) return
+    setUploading(true)
+    setError("")
+    const result = await uploadProductImageFile(supabase, file)
+    setUploading(false)
+    if ("error" in result) {
+      setError(result.error)
+      return
+    }
+    setForm((prev: any) => ({ ...prev, image_url: result.url }))
   }
 
   const handleSave = async () => {
@@ -315,14 +332,46 @@ export default function AdminProductList() {
               </div>
 
               <div>
-                <label className="block text-xs text-gray-500 mb-1">{"이미지 URL"}</label>
+                <label className="block text-xs text-gray-500 mb-1">{"상품 이미지"}</label>
+                <p className="text-[11px] text-gray-400 mb-2">
+                  {"외부 이미지 URL을 입력하거나, 로컬 파일을 업로드할 수 있습니다. (JPG·PNG·WebP·GIF, 최대 5MB)"}
+                </p>
                 <input
-                  name="image_url"
-                  value={form.image_url}
-                  onChange={handleChange}
-                  className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-terra"
-                  placeholder="https://..."
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  onChange={handleImageFile}
+                  disabled={uploading}
+                  className="w-full text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:border file:border-gray-200 file:bg-gray-50 file:text-xs file:font-sans hover:file:bg-gray-100 disabled:opacity-50"
                 />
+                {uploading && (
+                  <p className="text-xs text-brand-terra mt-1">{"이미지 업로드 중…"}</p>
+                )}
+                <div className="mt-2">
+                  <label className="block text-xs text-gray-500 mb-1">{"또는 이미지 URL"}</label>
+                  <input
+                    name="image_url"
+                    value={form.image_url}
+                    onChange={handleChange}
+                    className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-brand-terra"
+                    placeholder="https://..."
+                  />
+                </div>
+                {form.image_url && (
+                  <div className="mt-3 flex items-start gap-3">
+                    <img
+                      src={form.image_url}
+                      alt="미리보기"
+                      className="w-24 h-24 object-cover border border-gray-100"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setForm((prev: any) => ({ ...prev, image_url: "" }))}
+                      className="text-xs text-red-500 hover:underline"
+                    >
+                      {"이미지 제거"}
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="flex items-center gap-2">
@@ -349,7 +398,7 @@ export default function AdminProductList() {
               </button>
               <button
                 onClick={handleSave}
-                disabled={saving}
+                disabled={saving || uploading}
                 className="px-4 py-2 text-sm bg-brand-terra text-white hover:opacity-90 disabled:opacity-50"
               >
                 {saving ? "저장 중..." : modal === "add" ? "추가" : "저장"}

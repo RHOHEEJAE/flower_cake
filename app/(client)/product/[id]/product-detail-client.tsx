@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import useCartStore from "@/lib/store/use-cart-store"
 import ProductCard from "@/components/product-card"
-import { formatPrice } from "@/lib/utils"
+import { formatPrice, productPrimaryImage } from "@/lib/utils"
 
 interface Product {
   id: string
@@ -12,6 +12,7 @@ interface Product {
   description?: string
   price: number
   image_url?: string
+  images?: string[]
   category_slug?: string
   stock: number
   allergens?: string
@@ -33,7 +34,7 @@ export default function ProductDetailClient({
   const [activeTab, setActiveTab] = useState(0)
 
   const image =
-    product.image_url ||
+    productPrimaryImage(product) ||
     `https://picsum.photos/seed/${product.id}/600/600`
 
   const handleAddToCart = () => {
