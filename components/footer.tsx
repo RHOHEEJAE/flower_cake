@@ -55,6 +55,29 @@ export default function Footer() {
                 {"\uc6b4\uc601\uc2dc\uac04: \ud3c9\uc77c 10:00 ~ 18:00"}
               </p>
             </div>
+            <h4 className="font-serif text-sm tracking-wider mt-6 mb-3 text-brand-cream/80">
+              약관
+            </h4>
+            <div className="flex flex-col gap-1.5">
+              <Link
+                href="/legal/terms"
+                className="font-sans text-xs text-brand-cream/60 hover:text-brand-terra transition-colors"
+              >
+                서비스 이용약관
+              </Link>
+              <Link
+                href="/legal/privacy"
+                className="font-sans text-xs text-brand-cream/60 hover:text-brand-terra transition-colors"
+              >
+                개인정보 처리방침
+              </Link>
+              <Link
+                href="/legal/commerce"
+                className="font-sans text-xs text-brand-cream/60 hover:text-brand-terra transition-colors"
+              >
+                전자상거래 약관
+              </Link>
+            </div>
           </div>
         </div>
         <div className="border-t border-brand-cream/20 mt-8 pt-6 text-center">
