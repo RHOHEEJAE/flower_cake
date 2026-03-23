@@ -1,20 +1,16 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
-/** Supabase 대시보드에서 Kakao 프로바이더 활성화 및 Redirect URL 등록 필요 */
-export async function signInWithKakao(
-  supabase: SupabaseClient,
+/**
+ * 호스티드 Supabase의 signInWithOAuth(kakao)는 서버가 항상 account_email 스코프를 넣어
+ * 비즈앱이 아닐 때 KOE205가 납니다. 대신 `/auth/kakao/start`로 직접 인가합니다.
+ * @see lib/auth/kakao-oauth.ts
+ */
+export function signInWithKakao(
+  _supabase: SupabaseClient,
   nextPath: string = "/",
-) {
+): Promise<{ data: { url: string }; error: null }> {
   const origin = typeof window !== "undefined" ? window.location.origin : ""
-  const redirectTo = `${origin}/auth/callback?next=${encodeURIComponent(nextPath)}`
-
-  // KOE205(invalid_scope) 방지: account_email은 비즈앱 등에서만 설정 가능한 경우가 많아,
-  // 닉네임·프로필 이미지만 요청. 카카오 콘솔 동의항목에도 아래 항목을 켜 두어야 함.
-  return supabase.auth.signInWithOAuth({
-    provider: "kakao",
-    options: {
-      redirectTo,
-      scopes: "profile_nickname profile_image",
-    },
-  })
+  const startUrl = `${origin}/auth/kakao/start?next=${encodeURIComponent(nextPath)}`
+  window.location.href = startUrl
+  return Promise.resolve({ data: { url: startUrl }, error: null })
 }
