@@ -8,7 +8,7 @@ import type { SupabaseClient } from "@supabase/supabase-js"
 export function signInWithKakao(
   _supabase: SupabaseClient,
   nextPath: string = "/",
-): Promise<{ data: { url: string }; error: null }> {
+): Promise<{ data: { url: string } | null; error: Error | null }> {
   const origin = typeof window !== "undefined" ? window.location.origin : ""
   const startUrl = `${origin}/auth/kakao/start?next=${encodeURIComponent(nextPath)}`
   window.location.href = startUrl
