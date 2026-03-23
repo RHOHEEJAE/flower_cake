@@ -103,9 +103,13 @@ export default function Header() {
             {/* Auth */}
             {user ? (
               <div className="relative group">
-                <button className="font-sans text-sm text-brand-dark hover:text-brand-terra transition-colors flex items-center gap-1">
-                  <span className="hidden md:inline">
-                    {user.user_metadata?.name || user.email?.split("@")[0]}
+                <button className="font-sans text-sm text-brand-dark hover:text-brand-terra transition-colors flex items-center gap-1 max-w-[40vw] sm:max-w-none">
+                  <span className="inline truncate text-left">
+                    {user.user_metadata?.name ||
+                      user.user_metadata?.nickname ||
+                      user.user_metadata?.full_name ||
+                      user.email?.split("@")[0] ||
+                      "회원"}
                   </span>
                 </button>
                 <div className="absolute right-0 top-full mt-2 w-36 bg-white border border-brand-light shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
